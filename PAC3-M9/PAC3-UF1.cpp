@@ -34,10 +34,10 @@ int main() {
     cout << "Enter the number of processes to create: ";
     cin >> N;
 
-    // Seed random number generator
+    //Seed to randomize time
     srand(time(nullptr));
 
-    // Ask user for names to add
+    // Ask user for names
     for (int i = 0; i < N; i++) {
         string name;
         cout << "Enter a name for process " << i + 1 << ": ";
