@@ -25,16 +25,33 @@ void displayRandomPhrase() {
     int randomIndex = rand() % names.size();
     string randomName = names[randomIndex];
 
-    // Print the selected name with a fixed phrase
-    cout << "Hello, my name is " << randomName << "." << endl;
+    // Define an array of phrases with variable positions for the name
+    string frases[] = {
+        "Hello, my name is ",
+        "My name is ",
+        "I am known as ",
+        "You can call me ",
+        "I am called ",
+        "Greetings, I am ",
+        "I go by the name of ",
+        "People know me as ",
+        "They call me "
+    };
+
+    // Generate a random index to select a phrase
+    int phraseIndex = rand() % (sizeof(frases) / sizeof(frases[0]));
+
+    // Print the selected phrase with the random name
+    cout << frases[phraseIndex] << randomName << "." << endl;
 }
+
 
 int main() {
     int N;
     cout << "Enter the number of processes to create: ";
     cin >> N;
 
-    //Seed to randomize time
+    // Seed to randomize time
     srand(time(nullptr));
 
     // Ask user for names
@@ -54,12 +71,14 @@ int main() {
 
         if (pid < 0) {
             cerr << "Error creating process" << endl;
-        } else if (pid == 0) {  // Child process
+        } else if (pid == 0) {
             if (i == chosenProcess) {
+                
                 // Only the chosen process prints the phrase
                 displayRandomPhrase();
+            
             }
-            exit(0); // Ensure child process exits after handling
+            exit(0); // Exit child proces
         }
     }
 
@@ -68,5 +87,5 @@ int main() {
         wait(nullptr);
     }
 
-    return 0; // Ensure the program returns here properly, no extra output
+    return 0; // Ensure the program returns here properly.
 }
